@@ -15,25 +15,41 @@ We have adpated an example "label_image" provided by Tensorflow to "label_image_
 
 To cross-compile"label_image_secda" binary for PYNQ-Z1  simply use the following commands:
 * cd tensorflow/
-* ./make_label_image_secda.sh [vm|vm2|sa]
-* cp ./out/label_image_secda_[vm|vm2|sa] TO_PYNQ_DEVICE
+* ./make_label_image_secda.sh [vm|sa]
+* cp ./out/label_image_secda_[vm|sa] TO_PYNQ_DEVICE
 
 **Usage**
-* In-Construction
+* sudo ./label_image_secda_[vm|sa] -m[path/to/tflite/model.tflite] -i[path/to/input/image.bmp] -l[path/to/labels.txt] -t [1|2] -n [number of runs] -o [profile] -x [store_profile] 
+* "-m" path to tflite model [path/to/tflite/model.tflite]
+* "-i" path to input image (.bmp required) [path/to/input/image.bmp]
+* "-l" path to class labels.txt [path/to/labels.txt]
+* "-t" threads used [1|2]
+* "-n" number of inference runs to perform [0-100]
+* "-o" to profile inference times [0|1]
+* "-x" to profile & save profiled information (saves to current directory) [0|1]
+* Example: sudo ./label_image_secda_vm -mtmp/mobilenetv1.tflite -itmp/grace_hopper.bmp -ltmp/labels.txt -t 1 -n 1 -o 1 -x 0
 
 **Requirements**
-* In-Construction
- 
+* To cross compile make sure you have to have the relavant utilites and arm-linux-gnueabihf-gcc compiler
+* Cross compilation was tested/recommended for Ubuntu 18.04
+* Get compilers for PYNQ by following:
+* sudo apt-get install libc6-armel-cross libc6-dev-armel-cross binutils-arm-linux-gnueabi libncurses5-dev build-essential bison flex libssl-dev bc
+* sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+
 
 ## Accelerator Designs & Synthesis 
-* In-Construction
+* We provide pre-compiled binaries/bitmaps for the PYNQ Z1 along with archived Vivado and Vivado HLS project folders (check release) to enable synthesis from scratch
+* We also provide source code for both accelerators 
+* For more information please check out the [accelerator source-code](accelerators/)
 
 
 ## Testbench Simulation
-* In-Construction
+* To perform Testbench simulation we provide arhcived Vivado HLS project folder (check release) which contains everything required to perform testbench simulation once openned in Vivado HLS
 
+**Requirements**
+* Vivado HLS 2019.2
+* Vivado 2019.2
 
-## End-to-end Simulation
 ## End-to-end Simulation
 TFLite-SECDA End-to-end simulation enables us to performance inference on TFLite CNN models while simulating and profiling our GEMM accelerators. For the purpose of ease of installation we provide a fully contained docker image.
 
