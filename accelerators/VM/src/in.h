@@ -1,5 +1,3 @@
-#define STOPPER 4294967295
-
 void ACCNAME::Input_Handler(){
 #pragma HLS resource core=AXI4LiteS metadata="-bus_bundle slv0" variable=inS
 #pragma HLS resource core=AXI4LiteS metadata="-bus_bundle slv0" variable=rmax
@@ -15,7 +13,6 @@ int l_max;
 DATA last ={5000,1};
 wait();
   while(1){
-
 	inS.write(1);
 	sc_uint<32> header_lite= din1.read().data;
 	if(header_lite!=STOPPER){
@@ -85,7 +82,5 @@ wait();
 		while(schedule.read())wait();
 
 	}
-
-
   }
 }

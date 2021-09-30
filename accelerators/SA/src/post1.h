@@ -29,6 +29,7 @@ wait();
 			yoff[i]=WRQ1.read();
 			xoff[i]=WRQ2.read();
 		}
+		DWAIT(16);
 
 		for(int i=0;i<256;i++){
 #pragma HLS unroll
@@ -36,6 +37,7 @@ wait();
 		}
 		wait();
 		wait();
+		DWAIT();
 		for(int i=0;i<16;i++){
 			for(int j=0;j<16;j+=4){
 #pragma HLS pipeline II=1
@@ -142,7 +144,7 @@ wait();
 			}
 		}
 		wait();
-		DWAIT(85);
+		DWAIT(92);
 
 
 		//Rearrange
@@ -164,7 +166,6 @@ wait();
 				ot[j][i].data.range(31,24)  = r1[i*16 + j*4 + 3];
 			}
 		}
-		DWAIT(32);
 
 		int rb=WRQ1.read();
 		int lb=WRQ2.read();
@@ -273,7 +274,7 @@ wait();
 		if((rb1) && (lb12f))					dout4.write(ot[1][15]);
 		if(rb1 && (lb8f))						dout4.write(ot[2][15]);
 		if(rb1 && (lb4f))						dout4.write(ot[3][15]);
-		DWAIT(37);
+		DWAIT(77);
 
 		write1.write(0);
 		wait();

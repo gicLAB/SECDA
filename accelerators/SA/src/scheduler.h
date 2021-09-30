@@ -1,7 +1,5 @@
 void ACCNAME::schedule_gemm_unit(int unit_counter, int l_pointer, int r_pointer,int l, int r, int rb_over, int lb_over){
 	int d = (depth/4);
-	DWAIT(7);
-
 	while(!gemm_unit_1_ready.read())wait();
 	gemm_unit_1_ready.write(0);
 
@@ -300,10 +298,11 @@ wait();
 				int l4 = l/4;
 				l_pointer = l4*dm;
 				int lb_over= ((l+16) - lhs_block_max);
+				DWAIT(8);
 				schedule_gemm_unit(unit_counter,l_pointer,r_pointer,l4, r4, rb_over,lb_over);
 				schS.write(6);
 				wait();
-				DWAIT();
+				DWAIT(2);
 			}
 		}
 

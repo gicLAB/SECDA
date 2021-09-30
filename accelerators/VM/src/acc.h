@@ -11,6 +11,7 @@
 #define ACCNAME VM_UINT8_V2_0
 #define ACC_DTYPE sc_uint
 #define ACC_C_DTYPE unsigned int
+#define STOPPER 4294967295
 
 #define IN_BUF_LEN 2048
 #define WE_BUF_LEN 2048
@@ -56,8 +57,6 @@ SC_MODULE(ACCNAME) {
 	sc_signal<int> rlen;
     sc_signal<int> lhs_block_max;
     sc_signal<int> rhs_block_max;
-
-
 
 #ifndef __SYNTHESIS__
 	sc_signal<bool,SC_MANY_WRITERS> d_in1;
@@ -126,7 +125,6 @@ SC_MODULE(ACCNAME) {
 	sc_signal<bool> write4_3;
 	sc_signal<bool> write4_4;
 #endif
-
 
     sc_signal<int> gemm_unit_1_l_pointer;
     sc_signal<int> gemm_unit_2_l_pointer;
@@ -200,7 +198,6 @@ SC_MODULE(ACCNAME) {
 	sc_uint<32> rhs4c_1[WE_BUF_LEN];
 	sc_uint<32> rhs4d_1[WE_BUF_LEN];
 
-
 	//new sums bram
 	sc_int<32> lhs_sum1[SUMS_BUF_LEN];
 	sc_int<32> lhs_sum2[SUMS_BUF_LEN];
@@ -211,7 +208,6 @@ SC_MODULE(ACCNAME) {
 	sc_int<32> rhs_sum2[SUMS_BUF_LEN];
 	sc_int<32> rhs_sum3[SUMS_BUF_LEN];
 	sc_int<32> rhs_sum4[SUMS_BUF_LEN];
-
 
     sc_fifo<int> WRQ1;
     sc_fifo<int> WRQ2;
@@ -227,8 +223,6 @@ SC_MODULE(ACCNAME) {
     sc_signal<int>  w2S;
     sc_signal<int>  w3S;
     sc_signal<int>  w4S;
-
-
 
 #ifndef __SYNTHESIS__
     int weight_max_index=0;
@@ -258,7 +252,6 @@ SC_MODULE(ACCNAME) {
 	sc_out<int> wstall_2;
 	sc_out<int> wstall_3;
 	sc_out<int> wstall_4;
-
 	sc_out<int> rmax;
 	sc_out<int> lmax;
 

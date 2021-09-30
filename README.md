@@ -34,7 +34,23 @@ To cross-compile"label_image_secda" binary for PYNQ-Z1  simply use the following
 
 
 ## End-to-end Simulation
-* In-Construction
+## End-to-end Simulation
+TFLite-SECDA End-to-end simulation enables us to performance inference on TFLite CNN models while simulating and profiling our GEMM accelerators. For the purpose of ease of installation we provide a fully contained docker image.
+
+**Requirements**
+* Docker
+* VSCode (connect to container and ease of use)
+
+**Instructions**
+* First pull the docker image: docker pull judeharis97/secda-tflite:v1
+* Simply create a container: docker run -it -d --name secda-tflite-uint8 secda-tflite:v1
+* Once container is created and launched, you can access it through VSCode's attach to container functionality
+* After load VSCode workspace at /root/workspace/tensorflow/workspace.code-workspace
+* Once the VSCode workspace is loaded you are to run to the launch configurations through the Run and Debug tab to use the End to end Simulation
+* Launch configs: label_image_vm and launch: label_image_sa  uses the VM and SA accelerators respectively
+* Input files such as images and tflite models can be added/edited through the launch configurations (checkout /root/workspace/tensorflow/inputs_models)
+* After simulation a host of profiling data regarding the inference will be stored at /root/workspace/tensorflow/out
+
 
 
 

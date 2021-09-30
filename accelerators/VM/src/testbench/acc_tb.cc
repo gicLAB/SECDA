@@ -1,19 +1,10 @@
-//#ifdef __RTL_SIMULATION__
-//#include "ACCNAME_rtl_wrapper.h"
-//#define ACCNAME ACCNAME_rtl_wrapper
-//#else
-//#include "../acc.h"
-//#endif
-
 #include "dmadriver.h"
-
 #include <iostream>
 #include <fstream>
 #include<stdio.h>
 #include<stdlib.h>
 
 using namespace std;
-
 void load_start(DMADriver *dmad, string name){
 	string input;
 	ifstream wrin0;
@@ -24,7 +15,6 @@ void load_start(DMADriver *dmad, string name){
 	wrin1.open (name+"_1.txt");
 	wrin2.open (name+"_2.txt");
 	wrin3.open (name+"_3.txt");
-
 
 	dmad->inl0=0;
 	dmad->inl1=0;
@@ -51,12 +41,10 @@ void load_start(DMADriver *dmad, string name){
 	wrin2.close();
 	wrin3.close();
 	sc_start();
-
 }
 
 void read_out(DMADriver *dmad, string name){
   int expected_out = (dmad->r_max/4) * (dmad->l_max/4);
-
   ofstream wrin0;
   ofstream wrin1;
   ofstream wrin2;
@@ -103,9 +91,7 @@ void read_out(DMADriver *dmad, string name){
   wrin3.close();
 }
 
-
 int sc_main(int argc, char* argv[]) {
-
   sc_report_handler::set_actions("/IEEE_Std_1666/deprecated", SC_DO_NOTHING);
   sc_report_handler::set_actions( SC_ID_LOGIC_X_TO_BOOL_, SC_LOG);
   sc_report_handler::set_actions( SC_ID_VECTOR_CONTAINS_LOGIC_VALUE_, SC_LOG);
@@ -249,30 +235,20 @@ int sc_main(int argc, char* argv[]) {
   dmad.rmax(sig_rmax);
   dmad.lmax(sig_lmax);
 
-
-
-
   cout << "INFO: Simulating " << endl;
   load_start(&dmad,"input_data/model0_w0");
   load_start(&dmad,"input_data/model0_w0_i0");
   read_out(&dmad,"input_data/");
   cout << "Sim: Done " << endl;
-
   sc_start();
 
-
   int additional_cycles = dmad.r_max*dmad.l_max*2/4;
-
   float weight_global_usage = (float) mg.weight_max_index/ (float)GWE_BUF_LEN *100;
   float input_global_usage = (float) mg.input_max_index/ (float)IN_BUF_LEN *100;
   float weight_local_usage = (float) (mg.local_weight_max_index+1)/ (float)WE_BUF_LEN *100;
-
-
   int total_batch_macs = mg.g_macs[0]+mg.g_macs[1]+mg.g_macs[2]+mg.g_macs[3];
   int total_out_count = mg.g_out_count[0]+mg.g_out_count[1]+mg.g_out_count[2]+mg.g_out_count[3];
-
   float macs_to_out_ratio = (float) total_batch_macs/ (float) total_out_count;
-
   float gemm_cycle_percentage = (float) dmad.g1_gemm/ (float) dmad.p_cycles  *100;
   float write_cycle_percentage = (float) dmad.g1_write/ (float) dmad.p_cycles  *100;
   float wstall_cycle_percentage = (float) dmad.wstall1/ (float) dmad.p_cycles  *100;
@@ -280,70 +256,50 @@ int sc_main(int argc, char* argv[]) {
 
   cout << "RMAX : "<< dmad.r_max << endl;
   cout << "LMAX : "<< dmad.l_max << endl;
-
   cout << "Loading Cycles: "<< dmad.loading << endl;
   cout << "Processing Cycles: "<< dmad.p_cycles << endl;
-
   cout << "==================================================" <<  endl;
-
   cout << "G1 Idle Cycles: "<< dmad.g1_idle << endl;
   cout << "G2 Idle Cycles: "<< dmad.g2_idle << endl;
   cout << "G3 Idle Cycles: "<< dmad.g3_idle << endl;
   cout << "G4 Idle Cycles: "<< dmad.g4_idle << endl;
   cout << "Idle Cycle: "<< idle_cycle_percentage << "%" <<  endl;
-
   cout << "==================================================" <<  endl;
-
   cout << "G1 Write Cycles: "<< dmad.g1_write << endl;
   cout << "G2 Write Cycles: "<< dmad.g2_write << endl;
   cout << "G3 Write Cycles: "<< dmad.g3_write << endl;
   cout << "G4 Write Cycles: "<< dmad.g4_write << endl;
   cout << "Write Cycle: "<< write_cycle_percentage << "%" <<  endl;
-
-
   cout << "==================================================" <<  endl;
-
   cout << "G1 WStall Cycles: "<< dmad.wstall1 << endl;
   cout << "G2 WStall Cycles: "<< dmad.wstall2 << endl;
   cout << "G3 WStall Cycles: "<< dmad.wstall3 << endl;
   cout << "G4 WStall Cycles: "<< dmad.wstall4 << endl;
   cout << "WStall Cycle: "<< wstall_cycle_percentage << "%" <<  endl;
-
-
   cout << "==================================================" <<  endl;
-
   cout << "G1 GEMM Cycles: "<< dmad.g1_gemm << endl;
   cout << "G2 GEMM Cycles: "<< dmad.g2_gemm << endl;
   cout << "G3 GEMM Cycles: "<< dmad.g3_gemm << endl;
   cout << "G4 GEMM Cycles: "<< dmad.g4_gemm << endl;
   cout << "GEMM Cycle: "<< gemm_cycle_percentage << "%" <<  endl;
-
   cout << "==================================================" <<  endl;
-
   cout << "Global Weight Buffer Usage: "<< weight_global_usage << "%" <<  endl;
   cout << "Global Input Buffer Usage: "<< input_global_usage << "%" <<  endl;
   cout << "Local Weight Buffer Usage: "<< weight_local_usage << "%" <<  endl;
-
   cout << "==================================================" <<  endl;
-
   cout << "Total MAC count: "<< total_batch_macs << endl;
   cout << "G1 MAC count: "<< mg.g_macs[0] << endl;
   cout << "G2 MAC count: "<< mg.g_macs[1] << endl;
   cout << "G3 MAC count: "<< mg.g_macs[2] << endl;
   cout << "G4 MAC count: "<< mg.g_macs[3] << endl;
-
   cout << "==================================================" <<  endl;
-
   cout << "Total Output count: "<< total_out_count << endl;
   cout << "G1 Output count: "<< mg.g_out_count[0] << endl;
   cout << "G2 Output count: "<< mg.g_out_count[1] << endl;
   cout << "G3 Output count: "<< mg.g_out_count[2] << endl;
   cout << "G4 Output count: "<< mg.g_out_count[3] << endl;
   cout << "MACs per Output: "<< macs_to_out_ratio << endl;
-
   cout << "==================================================" <<  endl;
   cout << "Sim: Done " << endl;
-
-
   return 0;
 }

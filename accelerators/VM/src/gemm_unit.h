@@ -1,7 +1,6 @@
 void ACCNAME::Worker1(){
 	sc_uint<32> out[16][4];
 #pragma HLS array_partition variable=out complete dim=0
-
 	w1S.write(0);
 	wait();
 	while(1){

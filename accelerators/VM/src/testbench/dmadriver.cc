@@ -1,9 +1,8 @@
 #include "dmadriver.h"
-
 #include <iostream>
 #include <fstream>
-using namespace std;
 
+using namespace std;
 void DMADriver::read_in(){
 	for(int i=0;i<inl0;i++){
 		din1.write({in0[i], 1});
@@ -53,8 +52,6 @@ void DMADriver::Source(){
 	sourceS.write(0);
 	wait();
 	while (true){
-
-
 		read_in();
 		sent=true;
 		while(sent){
@@ -78,7 +75,6 @@ void DMADriver::Sink(){
 		}
 		sinkS.write(2);
 		read_out();
-
 		sent=false;
 		sinkS.write(3);
 		loading=read_cycle_count.read();

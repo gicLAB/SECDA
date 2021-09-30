@@ -92,6 +92,7 @@ void ACCNAME::Worker1(){
 #endif
 		}
 		w1S.write(4);
+		DWAIT(8);
 		while(write1.read()){
 			w1S.write(9);
 			DWAIT();

@@ -107,7 +107,6 @@ void ACCNAME::schedule_gemm_unit(int unit_counter, int l_pointer,int l, int r){
 	}
 }
 
-
 void ACCNAME::overwrite_weights_check(){
 	while(!gemm_unit_1_ready.read() || gemm_unit_1_iwuse.read()!=0) wait();
 	while(!gemm_unit_2_ready.read() || gemm_unit_2_iwuse.read()!=0) wait();

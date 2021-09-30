@@ -73,8 +73,6 @@ wait();
 	}
 }
 
-
-
 void ACCNAME::Post2(){
 int y[4];
 int x[4];
@@ -99,7 +97,6 @@ wait();
 		wait();
 	}
 }
-
 
 void ACCNAME::Post3(){
 int y[4];
@@ -126,7 +123,6 @@ wait();
 	}
 }
 
-
 void ACCNAME::Post4(){
 int y[4];
 int x[4];
@@ -151,5 +147,3 @@ wait();
 		wait();
 	}
 }
-
-

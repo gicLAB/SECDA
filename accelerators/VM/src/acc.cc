@@ -1,5 +1,4 @@
 #include "acc.h"
-
 #include "in.h"
 #include "data_in.h"
 #include "scheduler.h"
@@ -8,7 +7,6 @@
 #include "ppu.h"
 #include "write_sync.h"
 #include "out.h"
-
 #include "counter.h"
 
 

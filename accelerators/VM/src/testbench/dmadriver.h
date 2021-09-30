@@ -6,14 +6,10 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
-using namespace std;
-
 #include <systemc.h>
 #include "../acc.h"
 
-
-
-
+using namespace std;
 SC_MODULE(DMADriver) {
   sc_in<bool> clock;
   sc_in <bool>  reset;
@@ -50,26 +46,20 @@ SC_MODULE(DMADriver) {
   sc_in<int> gemm_2_idle;
   sc_in<int> gemm_3_idle;
   sc_in<int> gemm_4_idle;
-
   sc_in<int> gemm_1_write;
   sc_in<int> gemm_2_write;
   sc_in<int> gemm_3_write;
   sc_in<int> gemm_4_write;
-
   sc_in<int> gemm_1;
   sc_in<int> gemm_2;
   sc_in<int> gemm_3;
   sc_in<int> gemm_4;
-
   sc_in<int> wstall_1;
   sc_in<int> wstall_2;
   sc_in<int> wstall_3;
   sc_in<int> wstall_4;
-
   sc_in<int> rmax;
   sc_in<int> lmax;
-
-
 
   int p_cycles= 0;
   int waiting= 0;
@@ -78,25 +68,20 @@ SC_MODULE(DMADriver) {
   int g2_idle= 0;
   int g3_idle= 0;
   int g4_idle= 0;
-
   int g1_write= 0;
   int g2_write= 0;
   int g3_write= 0;
   int g4_write= 0;
-
   int g1_gemm= 0;
   int g2_gemm= 0;
   int g3_gemm= 0;
   int g4_gemm= 0;
-
   int wstall1=0;
   int wstall2=0;
   int wstall3=0;
   int wstall4=0;
-
   int r_max=0;
   int l_max=0;
-
 
   void Source();
 

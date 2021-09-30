@@ -11,7 +11,6 @@ wait();
 	}
 }
 
-
 void ACCNAME::WSync2(){
 wait();
 	while(true){
@@ -24,8 +23,6 @@ wait();
 		DWAIT();
 	}
 }
-
-
 
 void ACCNAME::WSync3(){
 wait();
@@ -40,9 +37,6 @@ wait();
 	}
 }
 
-
-
-
 void ACCNAME::WSync4(){
 wait();
 	while(true){
@@ -55,9 +49,6 @@ wait();
 		DWAIT();
 	}
 }
-
-
-
 
 void ACCNAME::Arranger1(){
 DATA d;
@@ -102,7 +93,6 @@ wait();
 	}
 }
 
-
 void ACCNAME::Arranger2(){
 DATA d;
 d.tlast=false;
@@ -145,7 +135,6 @@ wait();
 		write4_2.write(0);
 	}
 }
-
 
 void ACCNAME::Arranger3(){
 DATA d;
@@ -232,6 +221,3 @@ wait();
 		write4_4.write(0);
 	}
 }
-
-
-
