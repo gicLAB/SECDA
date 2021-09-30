@@ -38,13 +38,13 @@ To cross-compile"label_image_secda" binary for PYNQ-Z1  simply use the following
 
 
 ## Accelerator Designs & Synthesis 
-* We provide pre-compiled binaries/bitmaps for the PYNQ Z1 along with archived Vivado and Vivado HLS project folders (check release) to enable synthesis from scratch
+* We provide pre-compiled binaries/bitmaps for the PYNQ Z1 along with archived Vivado and Vivado HLS project folders ([release](https://github.com/gicLAB/SECDA/releases/tag/v1.0)) to enable synthesis from scratch
 * We also provide source code for both accelerators 
 * For more information please check out the [accelerator source-code](accelerators/)
 
 
 ## Testbench Simulation
-* To perform Testbench simulation we provide arhcived Vivado HLS project folder (check release) which contains everything required to perform testbench simulation once openned in Vivado HLS
+* To perform Testbench simulation we provide arhcived Vivado HLS project folders ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v2.zip)) which contains everything required to perform testbench simulation once openned in Vivado HLS
 
 **Requirements**
 * Vivado HLS 2019.2
@@ -55,7 +55,7 @@ TFLite-SECDA End-to-end simulation enables us to performance inference on TFLite
 
 **Requirements**
 * Docker
-* VSCode (connect to container and ease of use)
+* VSCode (to connect to container and ease of use)
 
 **Instructions**
 * First pull the docker image: docker pull judeharis97/secda-tflite:v1
