@@ -7,16 +7,15 @@ Our research paper covers the methodology in detail including our initial case s
 J. Haris, P. Gibson, J. Cano, N. Bohm Agostini, D. Kaeli. SECDA: Efficient Hardware/Software Co-Design of FPGA-based DNN Accelerators for Edge Inference. 33rd IEEE International Symposium on Computer Architecture and High Performance Computing (SBAC-PAD), Belo Horizonte, Brazil, October 2021.
 
 # SECDA-TFLite
-This repo contains the work for our initial case study using the SECDA methodology where we developed and implemented two GEMM accelerators, the Systolic Array (SA) and the Vector Mac (VM) designs. Both designs can be deployed for CONV2D layers during TFLite inference. Here we publish the source code to reproduce our methodology for the  TFLite-GEMM case study that we highlight in our paper, along with the two accelerator designs. 
-
+This repo contains the work for our initial case study using the SECDA methodology. We developed and implemented two GEMM accelerators, the Systolic Array (SA) and the Vector Mac (VM) designs. Both designs can execute CONV2D layers during TFLite inference. Here we publish the source code to reproduce our methodology for the TFLite-GEMM case study that we highlight in our paper, along with the two accelerator designs.
 
 ## End-to-end Simulation
-TFLite-SECDA End-to-end simulation enables us to performance inference on TFLite CNN models while simulating and profiling our GEMM accelerators. For the purpose of ease of installation we provide a fully contained docker image.
+TFLite-SECDA End-to-end simulation enables us to perform inference on TFLite CNN models while simulating and profiling our GEMM accelerators. For ease of installation, we provide a fully contained docker image.
 
 **Requirements**
 * Docker
 
-VSCode is also highly recommended, in order to connect to the docker container and load up a pre-configure SECDA workspace
+VSCode is also highly recommended to connect to the docker container and load up the pre-configured SECDA workspace.
 
 **Instructions**
 * First pull the docker image: 
@@ -27,23 +26,24 @@ docker pull judeharis97/secda-tflite:v1
 ```
 docker run -it -d --name secda-tflite-uint8 judeharis97/secda-tflite:v1
 ```
-* Once container is created and launched, you can access it through [VSCode's attach to container functionality](https://code.visualstudio.com/docs/remote/attach-container)
-* After load VSCode workspace at /root/workspace/tensorflow/workspace.code-workspace
-* Once the VSCode workspace is loaded you are to run to the launch configurations through the [Run and Debug](https://code.visualstudio.com/docs/editor/debugging) tab to use the End to end Simulation
-* Launch configs: label_image_vm and launch: label_image_sa  uses the VM and SA accelerators respectively
-* Input files such as images and tflite models can be added/edited through the launch configurations (checkout /root/workspace/tensorflow/inputs_models)
-* After simulation a host of profiling data regarding the inference will be stored at /root/workspace/tensorflow/out
+* Once the container is created and launched, you can access it through [VSCode's attach to container functionality](https://code.visualstudio.com/docs/remote/attach-container)
+* Load VSCode workspace at /root/workspace/tensorflow/workspace.code-workspace
+*  Once the VSCode workspace is loaded, you are to run to the launch configurations through the [Run and Debug](https://code.visualstudio.com/docs/editor/debugging) tab to use the End to end Simulation
+* Launch configs: label_image_vm and label_image_sa  uses the VM and SA accelerators respectively
+* Input files such as images and tflite models can be added/edited through the launch configurations (checkout /root/workspace/tensorflow/inputs_models for more)
+* After simulation, a host of profiling data regarding the inference will be stored at /root/workspace/tensorflow/out
 
 
 ## Accelerator Designs
-* We provide pre-compiled binaries/bitmaps for the PYNQ Z1 along with archived Vivado and Vivado HLS project folders ([release](https://github.com/gicLAB/SECDA/releases/tag/v1.0)) to enable synthesis from scratch
+* We provide pre-compiled binaries/bitstream for the PYNQ Z1 along with archived Vivado and Vivado HLS project folders ([release](https://github.com/gicLAB/SECDA/releases/tag/v1.0)) to enable synthesis from scratch
 * We also provide source code for both accelerators
 * For more information please check out the [accelerator source-code](accelerators/) or the section below
 
 
 ## Testbench Simulation & Synthesis for PYNQ-Z1
-* To perform Testbench simulation we provide arhcived Vivado HLS project folders ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v2.zip)) which contains everything required to perform testbench simulation once openned in Vivado HLS
-* To perform logic synthesis we provide Vivado project folders ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.xpr.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v3.xpr.zip)). These are contain the neccsary block diagram configuration including AXI DMA's and the accelerator to ensure correct connectivity to the processing system.
+* To perform Testbench simulation, we provide archived Vivado HLS project folders ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v2.zip)) which contain everything required to perform testbench simulation once opened in Vivado HLS
+
+* To perform logic synthesis, we provide Vivado project folders ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.xpr.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v3.xpr.zip)). These contain the necessary block diagram configuration including AXI DMA's and the accelerator to ensure correct connectivity to the processing system.
 
 
 **Requirements**
@@ -51,19 +51,19 @@ docker run -it -d --name secda-tflite-uint8 judeharis97/secda-tflite:v1
 * Vivado 2019.2
 
 **Instructions**
-To do testbench simulation or create Vivado IP from SystemC source code, do the following:
-* Unzip ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v2.zip)) the accelerator project you have want to use.
-* Load up Vivado HLS and choose the project folder in within the unzipped folder to open the pre-configured Vivado project and solution.
-* Here we can ask Vivado HLS to perform SystemC simulation or to perform HLS and export RTL using the menu bar.
-* For logic synthesis simply open up Vivado and loaded up ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.xpr.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v3.xpr.zip)).xpr project within the tool.
-* Use "Generate Bitsteam" option to synthesis and export the FPGA mapping.
+To perform Testbench simulation or create Vivado IP from SystemC source code, do the following:
+* Unzip ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v2.zip)) the accelerator project you want to use.
+* Load up Vivado HLS and choose the project folder within the unzipped folder to open the pre-configured Vivado project and solution.
+* Here, we can ask Vivado HLS to perform SystemC simulation. It can also perform HLS and export RTL using the menu bar.
+* For logic synthesis, simply open up Vivado and loaded up ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.xpr.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v3.xpr.zip)).xpr project within the tool.
+* Use "Generate Bitsteam" option to synthesize and export the FPGA mapping.
 
 
 ## PYNQ-Z1 TFLite Inference with Accelerators
-The Tensorflow submodule linked within the this repo contains the required source code for compiling TFLite-SECDA for the PYNQ-Z1.
-We have adpated an example "label_image" provided by Tensorflow to "label_image_secda" which is enables our accelerator pipeline for CONV2D layers.
+The Tensorflow submodule linked within this repo contains the required source code for compiling TFLite-SECDA for the PYNQ-Z1.
+We have adapted an example "label_image" provided by Tensorflow to "label_image_secda", which enables our accelerator pipeline for CONV2D layers.
 
-To cross-compile"label_image_secda" binary for PYNQ-Z1 simply use the following commands:
+To cross-compile"label_image_secda" binary for PYNQ-Z1, use the following commands:
 ```
 git clone https://github.com/gicLAB/SECDA.git --recurse-submodules
 cd tensorflow/
@@ -87,9 +87,9 @@ sudo ./label_image_secda_vm -mtmp/mobilenetv1.tflite -itmp/grace_hopper.bmp -ltm
 ```
 
 **Requirements**
-* To cross compile make sure you have to have the relavant utilites and arm-linux-gnueabihf-gcc compiler
-* Cross compilation was tested/recommended for Ubuntu 18.04
-* Get compilers for PYNQ by following:
+* To cross-compile make sure you have to have the relevant utilities and arm-linux-gnueabihf-gcc compiler
+* Cross-compilation was tested/recommended for Ubuntu 18.04
+* Get compilers for PYNQ-Z1 by installing the following:
 
 ```
 sudo apt-get install libc6-armel-cross libc6-dev-armel-cross binutils-arm-linux-gnueabi libncurses5-dev build-essential bison flex libssl-dev bc
