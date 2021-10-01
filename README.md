@@ -31,6 +31,7 @@ docker run -it -d --name secda-tflite-uint8 judeharis97/secda-tflite:v1
 * Load VSCode workspace at `/root/workspace/tensorflow/workspace.code-workspace`
 *  Once the VSCode workspace is loaded, you are to run to the launch configurations through the [Run and Debug](https://code.visualstudio.com/docs/editor/debugging) tab to use the End to end Simulation
 * The "Run and Debug" tab contains two launch configuaration seen in the top left of the tab: `(gbd) Label Image VM (tensorflow)` and `(gbd) Label Image VM (tensorflow)`, these launch the End to end simulation using the VM and SA accelerators respectively
+* These configurations are stored within `/root/Workspace/tensorflow/.vscode/launch.json` (to launch) and `/root/Workspace/tensorflow/.vscode/launch.json` (to compile), you can edit these to change the parameters to compile and launch the End to end Simulation.
 * Input files such as images and tflite models can be added/edited through the launch configurations (checkout `/root/workspace/tensorflow/inputs_models` for more)
 * After simulation, a host of profiling data regarding the inference will be stored at `/root/workspace/tensorflow/out`
 
