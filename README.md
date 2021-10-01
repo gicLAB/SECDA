@@ -27,11 +27,11 @@ docker pull judeharis97/secda-tflite:v1
 docker run -it -d --name secda-tflite-uint8 judeharis97/secda-tflite:v1
 ```
 * Once the container is created and launched, you can access it through [VSCode's attach to container functionality](https://code.visualstudio.com/docs/remote/attach-container)
-* Load VSCode workspace at /root/workspace/tensorflow/workspace.code-workspace
+* Load VSCode workspace at `/root/workspace/tensorflow/workspace.code-workspace`
 *  Once the VSCode workspace is loaded, you are to run to the launch configurations through the [Run and Debug](https://code.visualstudio.com/docs/editor/debugging) tab to use the End to end Simulation
-* Launch configs: label_image_vm and label_image_sa  uses the VM and SA accelerators respectively
-* Input files such as images and tflite models can be added/edited through the launch configurations (checkout /root/workspace/tensorflow/inputs_models for more)
-* After simulation, a host of profiling data regarding the inference will be stored at /root/workspace/tensorflow/out
+* The "Run and Debug" tab contains two launch configuaration seen in the top left of the tab: `(gbd) Label Image VM (tensorflow)` and `(gbd) Label Image VM (tensorflow)`, these launch the End to end simulation using the VM and SA accelerators respectively
+* Input files such as images and tflite models can be added/edited through the launch configurations (checkout `/root/workspace/tensorflow/inputs_models` for more)
+* After simulation, a host of profiling data regarding the inference will be stored at `/root/workspace/tensorflow/out`
 
 
 ## Accelerator Designs
@@ -63,7 +63,7 @@ To perform Testbench simulation or create Vivado IP from SystemC source code, do
 The Tensorflow submodule linked within this repo contains the required source code for compiling TFLite-SECDA for the PYNQ-Z1.
 We have adapted an example "label_image" provided by Tensorflow to "label_image_secda", which enables our accelerator pipeline for CONV2D layers.
 
-To cross-compile"label_image_secda" binary for PYNQ-Z1, use the following commands:
+To cross-compile "label_image_secda" binary for PYNQ-Z1, use the following commands:
 ```
 git clone https://github.com/gicLAB/SECDA.git --recurse-submodules
 cd tensorflow/
