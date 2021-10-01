@@ -41,7 +41,7 @@ docker run -it -d --name secda-tflite-uint8 judeharis97/secda-tflite:v1
 * For more information please check out the [accelerator source-code](accelerators/) or the section below
 
 
-## Testbench Simulation & Synthesis
+## Testbench Simulation & Synthesis for PYNQ-Z1
 * To perform Testbench simulation we provide arhcived Vivado HLS project folders ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v2.zip)) which contains everything required to perform testbench simulation once openned in Vivado HLS
 * To perform logic synthesis we provide Vivado project folders ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.xpr.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v3.xpr.zip)). These are contain the neccsary block diagram configuration including AXI DMA's and the accelerator to ensure correct connectivity to the processing system.
 
