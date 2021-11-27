@@ -4,7 +4,14 @@ SECDA is a hardware-software co-design methodology for efficiently designing and
 # Paper
 Our research paper covers the methodology in detail including our initial case study using SECDA. If you are using the SECDA methodology in research, we kindly request a reference to the following:
 
-J. Haris, P. Gibson, J. Cano, N. Bohm Agostini, D. Kaeli. SECDA: Efficient Hardware/Software Co-Design of FPGA-based DNN Accelerators for Edge Inference. 33rd IEEE International Symposium on Computer Architecture and High Performance Computing (SBAC-PAD), Belo Horizonte, Brazil, October 2021.
+```
+@inproceedings{Haris2021SBACPAD,
+      title={{SECDA: Efficient Hardware/Software Co-Design of FPGA-based DNN Accelerators for Edge Inference}}, 
+      author={Jude Haris and Perry Gibson and José Cano and Nicolas Bohm Agostini and David Kaeli},
+	  booktitle = {SBAC-PAD},
+      year={2021}
+}
+```
 
 # SECDA-TFLite
 This repo contains the work for our initial case study using the SECDA methodology. We developed and implemented two GEMM accelerators, the Systolic Array (SA) and the Vector Mac (VM) designs. Both designs can execute CONV2D layers during TFLite inference. Here we publish the source code to reproduce our methodology for the TFLite-GEMM case study that we highlight in our paper, along with the two accelerator designs.
