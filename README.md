@@ -8,7 +8,7 @@ Our research paper covers the methodology in detail including our initial case s
 @inproceedings{Haris2021SBACPAD,
       title={{SECDA: Efficient Hardware/Software Co-Design of FPGA-based DNN Accelerators for Edge Inference}}, 
       author={Jude Haris and Perry Gibson and José Cano and Nicolas Bohm Agostini and David Kaeli},
-	  booktitle = {SBAC-PAD},
+      booktitle = {SBAC-PAD},
       year={2021}
 }
 ```
