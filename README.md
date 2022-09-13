@@ -13,7 +13,7 @@ Our research paper covers the methodology in detail including our initial case s
 }
 ```
 
-# SECDA-TFLite
+# SECDA TFLite Case-Study
 This repo contains the work for our initial case study using the SECDA methodology. We developed and implemented two GEMM accelerators, the Systolic Array (SA) and the Vector Mac (VM) designs. Both designs can execute CONV2D layers during TFLite inference. Here we publish the source code to reproduce our methodology for the TFLite-GEMM case study that we highlight in our paper, along with the two accelerator designs.
 
 ## End-to-end Simulation
@@ -36,8 +36,8 @@ docker run -it -d --name secda-tflite-uint8 judeharis97/secda-tflite:v1
 ```
 * Once the container is created and launched, you can access it through [VSCode's attach to container functionality](https://code.visualstudio.com/docs/remote/attach-container)
 * Load VSCode workspace at `/root/workspace/tensorflow/workspace.code-workspace`
-*  Once the VSCode workspace is loaded, you are to run to the launch configurations through the [Run and Debug](https://code.visualstudio.com/docs/editor/debugging) tab to use the End to end Simulation
-* The "Run and Debug" tab contains two launch configuaration seen in the top left of the tab: `(gbd) Label Image VM (tensorflow)` and `(gbd) Label Image VM (tensorflow)`, these launch the End to end simulation using the VM and SA accelerators respectively
+*  Once the VSCode workspace is loaded, you are able to run to the launch configurations through the [Run and Debug](https://code.visualstudio.com/docs/editor/debugging) tab to use the End to end Simulation
+* The "Run and Debug" tab contains two launch configurations seen in the top left of the tab: `(gbd) Label Image VM (tensorflow)` and `(gbd) Label Image VM (tensorflow)`, these launch the End to end simulation using the VM and SA accelerators respectively
 * These configurations are stored within `/root/Workspace/tensorflow/.vscode/launch.json` (to launch) and `/root/Workspace/tensorflow/.vscode/launch.json` (to compile), you can edit these to change the parameters to compile and launch the End to end Simulation.
 * Input files such as images and tflite models can be added/edited through the launch configurations (checkout `/root/workspace/tensorflow/inputs_models` for more)
 * After simulation, a host of profiling data regarding the inference will be stored at `/root/workspace/tensorflow/out`
@@ -65,7 +65,7 @@ To perform Testbench simulation or create Vivado IP from SystemC source code, do
 * Load up Vivado HLS and choose the project folder within the unzipped folder to open the pre-configured Vivado project and solution.
 * Here, we can ask Vivado HLS to perform SystemC simulation. It can also perform HLS and export RTL using the menu bar.
 * For logic synthesis, simply open up Vivado and loaded up ([VM](https://github.com/gicLAB/SECDA/releases/download/v1.0/vm_uint8_v2.xpr.zip),[SA](https://github.com/gicLAB/SECDA/releases/download/v1.0/sa_uint8_v3.xpr.zip)).xpr project within the tool.
-* Use "Generate Bitsteam" option to synthesize and export the FPGA mapping.
+* Use the "Generate Bitstream" option to synthesize and export the FPGA mapping.
 
 
 ## PYNQ-Z1 TFLite Inference with Accelerators
