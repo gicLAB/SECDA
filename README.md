@@ -23,7 +23,7 @@ TFLite-SECDA End-to-end simulation enables us to perform inference on TFLite CNN
 * Docker
 
 **Recommendation**
-* VSCode: to connect to the docker container and load up the pre-configured SECDA workspace.
+* VSCode: to connect to the docker container and load up the pre-configured SECDA workspace using "open workspace from file" option in the VSCode File menu.
 
 **Instructions**
 * First pull the docker image: 
