@@ -13,7 +13,7 @@ Our research paper covers the methodology in detail including our initial case s
 }
 ```
 
-# SECDA TFLite Case-Study
+# SECDA Case-Study
 This repo contains the work for our initial case study using the SECDA methodology. We developed and implemented two GEMM accelerators, the Systolic Array (SA) and the Vector Mac (VM) designs. Both designs can execute CONV2D layers during TFLite inference. Here we publish the source code to reproduce our methodology for the TFLite-GEMM case study that we highlight in our paper, along with the two accelerator designs.
 
 ## End-to-end Simulation
